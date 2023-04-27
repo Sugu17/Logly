@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendance</title>
+  <style>
+    #list-group{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center ;
+    }
+    .list-group-item{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="list-group list-group-flush list-group-item-success my-3" id="list-group" data-bs-theme="light" >
+    {% for date in date_list%}
+      <a href="{{date.date_id}}" class="list-group-item my-3 w-25 list-group-item-action">{{date}}</a>
+    {%endfor%}
+</body>
+</html>
+{% endblock %}

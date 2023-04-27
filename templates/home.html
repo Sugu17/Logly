@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .centre-element {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 95%;
+        }
+
+        .list-group-item {
+            border-style: none;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<div class="container centre-element">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <span class="fs-1 fw-bold text-success">
+                Log Me - A smart attendance system
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a type="button" class="btn btn-lg px-5 py-2 btn-success" href="{%url 'Attendance:index'%}">
+                Go
+            </a>
+        </li>
+    </ul>
+</div>
+
+</html>
+{% endblock content %}

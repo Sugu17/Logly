@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .centre-parent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 85%;
+        }
+
+        .form-control:focus {
+            border-color: rgb(6, 175, 116);
+            box-shadow: 0 0 5px rgb(0, 74, 46) !important;
+        }
+
+        .card,
+        .card li {
+            width: fit-content;
+            background-color: rgb(197, 234, 219);
+        }
+
+        .form-floating {
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .list-group li {
+            padding: 2vh 0;
+        }
+
+        .form-floating label {
+            margin-left: 15%;
+        }
+
+        .card-body {
+            width: fit-content;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .list-group-item {
+            border: none;
+        }
+
+        #signup-btn {
+            width: 100%;
+        }
+    </style>
+</head>
+<div class="centre-parent">
+    <div class="card container">
+        <div class="card-body px-4 mx-0">
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <span class="fs-2 fw-medium text-success">Sign Up</span>
+                </li>
+                <form method="post" action="{%url 'Accounts:register'%}">
+                    {% csrf_token %}
+                    <li class="list-group-item">
+                        <div class="form-floating">
+                            <input type="email" class="form-control w-75" name="email"
+                                placeholder="20eumc100@skcet.ac.in">
+                            <label for="email">Email Address</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-floating">
+                            <input type="password" class="form-control w-75" name="password" placeholder="Password">
+                            <label for="password">Password</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-floating">
+                            <input type="password" class="form-control w-75" name="confirm_password"
+                                placeholder="Password">
+                            <label for="confirm_password">Confirm Password</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-floating">
+                            <input type="text" class="form-control  w-75" name="first_name" placeholder="First Name">
+                            <label for="first_name">First Name</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-floating">
+                            <input type="text" class="form-control w-75" name="last_name" placeholder="Last Name">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-floating">
+                            <input type="text" class="form-control w-75" name="username" placeholder="abcd1234$">
+                            <label for="username">Username</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item" id="signup-btn">
+                        <input class="btn btn-lg btn-success px-4" type="submit" value="Submit">
+                    </li>
+                    <div class="form-group">
+                        {% for message in messages %}
+                        <div class="alert alert-danger" style="width:fit-content" role="alert">
+                            {{message}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </form>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</html>
+{% endblock content %}
