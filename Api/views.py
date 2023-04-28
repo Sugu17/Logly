@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from Attendance.models import Attendance, Date
 
 # Create your views here.
-
 @csrf_exempt
 def update(request):
     if request.method == 'POST':
@@ -32,7 +31,7 @@ def update(request):
             case _:
                 return HttpResponse("Invalid period id!")
         record.save()
-        #redirect(f'reverse(Attendance:detail)/{date_object.date_id}')
+        redirect(f'reverse(Attendance:detail)/{date_object.date_id}')
         return HttpResponse("Data recieved")
     else:
         return HttpResponse("API site")

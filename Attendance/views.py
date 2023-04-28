@@ -11,7 +11,7 @@ def index(request):
 @login_required
 def detail(request,date_id):
     date=Date.objects.get(pk=date_id)
-    attendance_objects=date.attendances.all()
+    attendance_objects=date.attendances.all().order_by("reg_no")
     data_list=[]
     for attendance in attendance_objects:
         data={}
@@ -34,4 +34,5 @@ def detail(request,date_id):
         data['Period 7']='Present' if attendance.period_7 else 'Absent'
         data['Status']=True if sum(list)>4 else False
         data_list.append(data)
+    #data_list=sorted(data_list,key=lambda data:data["Register Number"])
     return render(request,'Attendance/detail.html',context={'data_list':data_list})

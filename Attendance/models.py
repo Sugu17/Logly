@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Date(models.Model):
-    date_id=models.AutoField(primary_key=True,default=1)
+    date_id=models.AutoField(primary_key=True,auto_created=True)
     date = models.DateField(max_length=255,default=timezone.now)
     def __str__(self) -> str:
         return (self.date.strftime("%B %d %Y"))
