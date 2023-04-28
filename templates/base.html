@@ -14,7 +14,8 @@
     <nav class="navbar" style="background-color: #313132;" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'Attendance:index' %}">
-                <img src="https://icons8.com/icon/ZXWIgQjhpqS7/attendance" alt="Logo" width="30" height="24"
+                {% load static %}
+                <img src="{% static 'Attendance/bookmark.svg' %}" alt="Logo" width="30" height="24"
                     class="d-inline-block align-text-top">
                 LogMe
             </a>
