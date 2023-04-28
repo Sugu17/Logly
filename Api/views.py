@@ -1,19 +1,17 @@
 from django.shortcuts import redirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from Attendance.models import Attendance, Date
-
+import json
 # Create your views here.
 @csrf_exempt
 def update(request):
     if request.method == 'POST':
-        data = {}
-        data['roll_no'] = request.POST['Roll Number']
-        data['date'] = request.POST['Date']
-        data['period_id'] = request.POST['Period ID']
-        date_object = Date.objects.get(date=data['date'])
+        data = json.loads(request.body)
+        print(data)
+        date_object = Date.objects.get(date=data['Date'])
         record = Attendance.objects.get(
-            reg_no=data['roll_no'], log_date=date_object.date_id)
-        match int(data['period_id']):
+            reg_no=data['Roll Number'], log_date=date_object.date_id)
+        match int(data['Period ID']):
             case 1:
                 record.period_1 = True
             case 2:
