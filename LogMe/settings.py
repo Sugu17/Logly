@@ -21,7 +21,7 @@ SECRET_KEY = "django-insecure-pz8g9sr382sh#_&g!5y5di-68(osesm4-^au_0r3)ki7@*ru=7
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SECURE_REFERRER_POLICY = "strict-origin"
+SECURE_REFERRER_POLICY = "no-referrer"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "attendance-project.onrender.com"]
 CSRF_TRUSTED_ORIGINS = [
     "https://127.0.0.1",
