@@ -1,11 +1,14 @@
 from django.shortcuts import render,get_list_or_404
 from .models import Date
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def index(request):
     context={'date_list':get_list_or_404(Date)}
     return render(request,'Attendance/index.html',context=context)
 
+@login_required
 def detail(request,date_id):
     date=Date.objects.get(pk=date_id)
     attendance_objects=date.attendances.all()

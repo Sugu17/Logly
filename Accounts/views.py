@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -14,6 +15,7 @@ def register(request):
         email = data['email']
         password = data['password']
         confirm_password = data['confirm_password']
+        print(data)
         if password == confirm_password:
             if User.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already taken')
@@ -22,7 +24,7 @@ def register(request):
                 messages.info(request, 'Email is already taken')
                 return redirect('Accounts:register')
             else:
-                user = User.objects.create(username=username, password=password,
+                user = User.objects.create_user(username=username, password=password,
                                            email=email, first_name=first_name, last_name=last_name)
                 user.save()
                 return redirect('Accounts:login_user')
@@ -37,7 +39,6 @@ def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        print(username,password)
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
@@ -48,6 +49,7 @@ def login_user(request):
 
     else:
         return render(request, 'Accounts/login.html')
-    
+
+@login_required  
 def home(request):
     return render(request,'home.html')
